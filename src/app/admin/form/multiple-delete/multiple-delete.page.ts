@@ -9,7 +9,7 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
   templateUrl: './multiple-delete.page.html',
   styleUrls: ['./multiple-delete.page.scss'],
 })
-export class MultipleDeletePage {
+export class MultipleDeletePage implements OnInit{
   items: Barang[];
   deleteSelected :any = [];
 
@@ -21,7 +21,7 @@ export class MultipleDeletePage {
     private toastCtrl: ToastController,
   ) { }
 
-  ionViewWillEnter(){
+  ngOnInit(){
     this.items = this.barangService.getAllItems();
   }
 
