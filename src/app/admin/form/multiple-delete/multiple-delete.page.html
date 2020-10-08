@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/admin"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Multi Delete</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item lines="none" *ngFor="let item of items">
+            <ion-card class="card-border-lg">
+                <ion-item lines="none">
+                    <ion-img slot="start" class="img-border" [src]="item.imageUrl[0]"></ion-img>
+                    <ion-label class="label-space">
+                        {{ item.nama }} <br/> {{ item.price | currency:"Rp. ": true:"1.0"}} <br/>Tersedia: {{ item.stock }}
+                    </ion-label>
+                    <ion-checkbox (click)="deleteMultipel(item)" color="danger"></ion-checkbox>
+                </ion-item>
+            </ion-card>
+        </ion-item>
+    </ion-list>
+
+    <ion-button color="danger" expand="block" (click)="presentAlert()">DELETE</ion-button>
+</ion-content>
