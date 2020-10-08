@@ -16,8 +16,8 @@
                 <form [formGroup]="editForm">
                     <ion-list>
                         <ion-item>
-                            <ion-label position="floating">URL Foto</ion-label>
-                            <ion-textarea formControlName="url" type="text"></ion-textarea>
+                            <ion-label position="floating">URL Foto [Pisahkan dengan Koma]</ion-label>
+                            <ion-textarea rows="4" cols="20" formControlName="url" type="text"></ion-textarea>
                         </ion-item>
                         <ion-item *ngIf="!editForm.get('url').valid && editForm.get('url').touched">
                             <ion-label class="error-msg">URL Foto tidak boleh kosong</ion-label>
@@ -159,4 +159,4 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-</ion-content>>
+</ion-content>
