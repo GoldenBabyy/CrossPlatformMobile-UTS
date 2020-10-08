@@ -37,7 +37,7 @@ export class BarangService {
       model: 'Vostro',
       price: 700000,
       stock: 4,
-      desc: [{speed: '8400Mbps', ukuran: '4GB'}]
+      desc: [{speed: '8400 Mbps', ukuran: '4 GB'}]
     },
     {
       id: 'B04',
@@ -48,7 +48,7 @@ export class BarangService {
       model: 'G41',
       price: 300000,
       stock: 1,
-      desc: [{chipset: 'Northbridge', toMerk: 'intel'}]
+      desc: [{chipset: 'Northbridge', toMerk: 'Intel'}]
     },    
     {
       id: 'B05',
