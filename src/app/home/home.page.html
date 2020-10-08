@@ -1,19 +1,23 @@
 <ion-header [translucent]="true">
-    <ion-toolbar>
+    <ion-toolbar color="primary">
         <ion-title>
             Home
         </ion-title>
         <ion-buttons slot="start">
             <ion-menu-button (click)="menuBar()"></ion-menu-button>
         </ion-buttons>
-        <!-- <ion-button fill="clear" slot="end" href="/home/home-grid"> -->
-        <ion-button fill="clear" slot="end" (click)="switchView()">
-            <ion-icon name="grid-outline"></ion-icon>
-        </ion-button>
+        <ion-buttons slot="end">
+            <ion-button (click)="switchView()" *ngIf="grid">
+                <ion-icon name="grid-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="switchView()" *ngIf="!grid">
+                <ion-icon name="list-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" *ngIf="grid">
+<ion-content [fullscreen]="true" *ngIf="grid" color="tertiary">
     <ion-grid>
         <ion-row>
             <ion-col class="ion-col-class" size="12" size-sm="8" offset-sm="2" *ngFor="let item of items" #slidingItem>

@@ -46,7 +46,7 @@ export class AdminPage {
 
   async presentAlert(item: Barang, slidingItem: IonItemSliding){
     const alert = await this.alertCtrl.create({
-      header: 'Are you sure?',
+      header: 'Delete Item',
       message: 'Do you really want to delete this item?',
       buttons: [
         {

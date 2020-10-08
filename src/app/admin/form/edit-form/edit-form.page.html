@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="secondary">
         <ion-buttons slot="start">
             <ion-back-button defaultHref="/admin"></ion-back-button>
         </ion-buttons>
@@ -10,147 +10,153 @@
 </ion-header>
 
 <ion-content>
-    <form [formGroup]="editForm">
-        <ion-list>
-            <ion-item>
-                <ion-label position="floating">URL Foto</ion-label>
-                <ion-textarea formControlName="url" type="text"></ion-textarea>
-            </ion-item>
-            <ion-item *ngIf="!editForm.get('url').valid && editForm.get('url').touched">
-                <ion-label class="error-msg">URL Foto tidak boleh kosong</ion-label>
-            </ion-item>
+    <ion-grid>
+        <ion-row>
+            <ion-col class="ion-col-class" size="12" size-sm="8" offset-sm="2">
+                <form [formGroup]="editForm">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label position="floating">URL Foto</ion-label>
+                            <ion-textarea formControlName="url" type="text"></ion-textarea>
+                        </ion-item>
+                        <ion-item *ngIf="!editForm.get('url').valid && editForm.get('url').touched">
+                            <ion-label class="error-msg">URL Foto tidak boleh kosong</ion-label>
+                        </ion-item>
 
-            <ion-item>
-                <ion-label position="floating">Merek</ion-label>
-                <ion-input inputmode="text" formControlName="merk"></ion-input>
-            </ion-item>
-            <ion-item *ngIf="!editForm.get('merk').valid && editForm.get('merk').touched">
-                <ion-label class="error-msg">Merek tidak boleh kosong</ion-label>
-            </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Merek</ion-label>
+                            <ion-input inputmode="text" formControlName="merk"></ion-input>
+                        </ion-item>
+                        <ion-item *ngIf="!editForm.get('merk').valid && editForm.get('merk').touched">
+                            <ion-label class="error-msg">Merek tidak boleh kosong</ion-label>
+                        </ion-item>
 
-            <ion-item>
-                <ion-label position="floating">Model</ion-label>
-                <ion-input inputmode="text" formControlName="model"></ion-input>
-            </ion-item>
-            <ion-item *ngIf="!editForm.get('model').valid && editForm.get('model').touched">
-                <ion-label class="error-msg">Model tidak boleh kosong</ion-label>
-            </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Model</ion-label>
+                            <ion-input inputmode="text" formControlName="model"></ion-input>
+                        </ion-item>
+                        <ion-item *ngIf="!editForm.get('model').valid && editForm.get('model').touched">
+                            <ion-label class="error-msg">Model tidak boleh kosong</ion-label>
+                        </ion-item>
 
-            <ion-item>
-                <ion-label position="floating">Harga</ion-label>
-                <ion-input type="number" formControlName="harga" style="margin-top: 10px;">Rp. </ion-input>
-            </ion-item>
-            <ion-item *ngIf="!editForm.get('harga').valid && editForm.get('harga').touched">
-                <ion-label class="error-msg">Harga tidak boleh kosong</ion-label>
-            </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Harga</ion-label>
+                            <ion-input type="number" formControlName="harga" style="margin-top: 10px;">Rp. </ion-input>
+                        </ion-item>
+                        <ion-item *ngIf="!editForm.get('harga').valid && editForm.get('harga').touched">
+                            <ion-label class="error-msg">Harga tidak boleh kosong</ion-label>
+                        </ion-item>
 
-            <ion-item>
-                <ion-label position="floating">Stok</ion-label>
-                <ion-input type="number" formControlName="stok"></ion-input>
-            </ion-item>
-            <ion-item *ngIf="!editForm.get('stok').valid && editForm.get('stok').touched">
-                <ion-label class="error-msg">Stok tidak boleh kosong</ion-label>
-            </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Stok</ion-label>
+                            <ion-input type="number" formControlName="stok"></ion-input>
+                        </ion-item>
+                        <ion-item *ngIf="!editForm.get('stok').valid && editForm.get('stok').touched">
+                            <ion-label class="error-msg">Stok tidak boleh kosong</ion-label>
+                        </ion-item>
 
-            <ion-item lines='none' *ngIf="loadedItem.jenis != 'gpu'">
-                <ion-label><br/>Deskripsi Produk</ion-label>
-            </ion-item>
+                        <ion-item lines='none' *ngIf="loadedItem.jenis != 'gpu'">
+                            <ion-label><br/>Deskripsi Produk</ion-label>
+                        </ion-item>
 
-            <ion-item formGroupName="detailProduk" *ngIf="loadedItem.jenis=='cpu'">
-                <ion-grid>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines='none'>
-                                <ion-label position="floating">Base Clock</ion-label>
-                            </ion-item>
-                            <ion-item>
-                                <ion-input type="number" formControlName="baseClock"></ion-input>
-                                <ion-label>GHz</ion-label>
-                            </ion-item>
-                        </ion-col>
-                        <ion-col>
-                            <ion-item lines='none'>
-                                <ion-label position="floating">Boost Clock</ion-label>
-                            </ion-item>
-                            <ion-item>
-                                <ion-input type="number" formControlName="boostClock"></ion-input>
-                                <ion-label>GHz</ion-label>
-                            </ion-item>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines='none'>
-                                <ion-label position="floating">Core Count</ion-label>
-                            </ion-item>
-                            <ion-item>
-                                <ion-input type="number" formControlName="core"></ion-input>
-                            </ion-item>
-                        </ion-col>
-                        <ion-col>
-                            <ion-item lines='none'>
-                                <ion-label position="floating">Thread Count</ion-label>
-                            </ion-item>
-                            <ion-item>
-                                <ion-input type="number" formControlName="thread"></ion-input>
-                            </ion-item>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </ion-item>
+                        <ion-item formGroupName="detailProduk" *ngIf="loadedItem.jenis=='cpu'">
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col>
+                                        <ion-item lines='none'>
+                                            <ion-label position="floating">Base Clock</ion-label>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-input type="number" formControlName="baseClock"></ion-input>
+                                            <ion-label>GHz</ion-label>
+                                        </ion-item>
+                                    </ion-col>
+                                    <ion-col>
+                                        <ion-item lines='none'>
+                                            <ion-label position="floating">Boost Clock</ion-label>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-input type="number" formControlName="boostClock"></ion-input>
+                                            <ion-label>GHz</ion-label>
+                                        </ion-item>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col>
+                                        <ion-item lines='none'>
+                                            <ion-label position="floating">Core Count</ion-label>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-input type="number" formControlName="core"></ion-input>
+                                        </ion-item>
+                                    </ion-col>
+                                    <ion-col>
+                                        <ion-item lines='none'>
+                                            <ion-label position="floating">Thread Count</ion-label>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-input type="number" formControlName="thread"></ion-input>
+                                        </ion-item>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-item>
 
-            <ion-item formGroupName="detailProduk" *ngIf="loadedItem.jenis=='ram'">
-                <ion-grid>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines='none'>
-                                <ion-label position="floating">Speed</ion-label>
-                            </ion-item>
-                            <ion-item>
-                                <ion-input type="number" formControlName="speed"></ion-input>
-                                <ion-label>Mbps</ion-label>
-                            </ion-item>
-                        </ion-col>
-                        <ion-col>
-                            <ion-item lines='none'>
-                                <ion-label position="floating">Ukuran</ion-label>
-                            </ion-item>
-                            <ion-item>
-                                <ion-input type="number" formControlName="ukuran"></ion-input>
-                                <ion-label>GB</ion-label>
-                            </ion-item>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </ion-item>
+                        <ion-item formGroupName="detailProduk" *ngIf="loadedItem.jenis=='ram'">
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col>
+                                        <ion-item lines='none'>
+                                            <ion-label position="floating">Speed</ion-label>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-input type="number" formControlName="speed"></ion-input>
+                                            <ion-label>Mbps</ion-label>
+                                        </ion-item>
+                                    </ion-col>
+                                    <ion-col>
+                                        <ion-item lines='none'>
+                                            <ion-label position="floating">Ukuran</ion-label>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-input type="number" formControlName="ukuran"></ion-input>
+                                            <ion-label>GB</ion-label>
+                                        </ion-item>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-item>
 
-            <ion-item formGroupName="detailProduk" *ngIf="loadedItem.jenis=='mb'">
-                <ion-grid>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines='none'>
-                                <ion-label position="floating">Chipset</ion-label>
-                            </ion-item>
-                            <ion-item>
-                                <ion-input type="text" formControlName="chipset"></ion-input>
-                            </ion-item>
-                        </ion-col>
-                        <ion-col>
-                            <ion-item lines='none'>
-                                <ion-label position="floating">Ditujukan untuk prosessor merek</ion-label>
-                            </ion-item>
-                            <ion-item>
-                                <ion-input type="text" formControlName="toMerk"></ion-input>
-                            </ion-item>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </ion-item>
-        </ion-list>
+                        <ion-item formGroupName="detailProduk" *ngIf="loadedItem.jenis=='mb'">
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col>
+                                        <ion-item lines='none'>
+                                            <ion-label position="floating">Chipset</ion-label>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-input type="text" formControlName="chipset"></ion-input>
+                                        </ion-item>
+                                    </ion-col>
+                                    <ion-col>
+                                        <ion-item lines='none'>
+                                            <ion-label position="floating">Ditujukan untuk prosessor merek</ion-label>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-input type="text" formControlName="toMerk"></ion-input>
+                                        </ion-item>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-item>
+                    </ion-list>
 
-        <ion-button [disabled]="editForm.invalid" color="primary" expand="block" (click)="onSubmit()">
-            Save Item
-            <ion-icon slot="end" name="create"></ion-icon>
-        </ion-button>
-    </form>
+                    <ion-button [disabled]="editForm.invalid" color="secondary" expand="block" (click)="onSubmit()">
+                        Edit Item
+                        <ion-icon slot="end" name="create"></ion-icon>
+                    </ion-button>
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>>

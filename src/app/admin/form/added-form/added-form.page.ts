@@ -26,6 +26,8 @@ export class AddedFormPage{
   }
 
   ngOnInit() {
+    this.items = this.barangService.getAllItems();
+
     this.addedForm = new FormGroup({
       url: new FormControl(null, {
         updateOn: 'change',

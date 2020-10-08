@@ -33,7 +33,6 @@ export class HomePage {
 
   switchView(){
     this.grid = !this.grid;
-    console.log(this.grid)
   }
 
   deleteItem(item, slidingItem, views){

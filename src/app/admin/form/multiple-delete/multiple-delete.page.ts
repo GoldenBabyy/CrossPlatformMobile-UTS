@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BarangService } from 'src/app/home/barang.service';
 import { Barang } from 'src/app/home/home.model';
 import { Router } from '@angular/router';
-import { MenuController, AlertController, LoadingController, ToastController, IonItemSliding } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-multiple-delete',
@@ -15,8 +15,7 @@ export class MultipleDeletePage {
 
   constructor(
     private router: Router,
-    private barangService: BarangService, 
-    private menuCtrl: MenuController,
+    private barangService: BarangService,   
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
@@ -37,16 +36,18 @@ export class MultipleDeletePage {
   }
 
   logDeleteStudents() {
-    this.deleteSelected.forEach((item) => {
-      this.barangService.deleteItem(item.id);
+    this.presentLoading().then(()=>{
+      this.deleteSelected.forEach((item) => {
+        this.barangService.deleteItem(item.id);
+      });
+      this.deleteSelected = [];
+      this.router.navigate(['/admin']);
     });
-    this.deleteSelected = [];
-    this.router.navigate(['/admin']);
   }
 
   async presentAlert(item: Barang){
     const alert = await this.alertCtrl.create({
-      header: 'Are you sure?',
+      header: 'Multiple Delete Item',
       message: 'Do you really want to delete the item/items?',
       buttons: [
         {

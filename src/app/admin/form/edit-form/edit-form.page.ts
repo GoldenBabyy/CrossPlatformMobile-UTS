@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { BarangService } from 'src/app/home/barang.service';
 import { Barang } from 'src/app/home/home.model';
 
@@ -20,6 +20,7 @@ export class EditFormPage implements OnInit {
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
     private activatedRoute: ActivatedRoute,
+    private alertCtrl: AlertController
   ) { }
 
   ngOnInit() {
@@ -87,7 +88,7 @@ export class EditFormPage implements OnInit {
     })
   }
 
-  onSubmit(){
+  editItem(){
     console.log(this.editForm.value)
     this.presentLoading('Editing item...').then(()=>{
     console.log(this.editForm.value.desc);
@@ -96,6 +97,24 @@ export class EditFormPage implements OnInit {
       this.router.navigate(['/admin']);
       this.presentToast('Item Edited', 'success');
     });
+  }
+
+  async onSubmit(){
+    const alert = await this.alertCtrl.create({
+      header: 'Edit Item',
+      message: 'Do you really want to edit this item?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Edit',
+          handler: () => this.editItem()
+        }
+      ]
+    });
+    await alert.present();
   }
 
   async presentToast(msg: string, colors:string) {
