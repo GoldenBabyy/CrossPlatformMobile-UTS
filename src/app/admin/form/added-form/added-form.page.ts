@@ -27,7 +27,7 @@ export class AddedFormPage{
 
   ngOnInit() {
     this.items = this.barangService.getAllItems();
-
+    
     this.addedForm = new FormGroup({
       url: new FormControl(null, {
         updateOn: 'change',
@@ -37,7 +37,7 @@ export class AddedFormPage{
         updateOn: 'change',
         validators: [Validators.required, Validators.maxLength(100)]
       }),
-      jenis: new FormControl("cpu", {
+      jenis: new FormControl(null, {
         updateOn: 'change',
         validators: [Validators.required]
       }),
@@ -55,41 +55,70 @@ export class AddedFormPage{
       }),
       detailProduk: new FormGroup({
         baseClock: new FormControl(null, {
-          // updateOn: 'change',
-          // validators: [Validators.required]
+          updateOn: 'change',
+          validators: null
         }),
         boostClock: new FormControl(null, {
-          // updateOn: 'change',
-          // validators: [Validators.required]
+          updateOn: 'change',
+          validators: null
         }),
         core: new FormControl(null, {
-          // updateOn: 'change',
-          // validators: [Validators.required]
+          updateOn: 'change',
+          validators: null
         }),
         thread: new FormControl(null, {
-          // updateOn: 'change',
-          // validators: [Validators.required]
+          updateOn: 'change',
+          validators: null
         }),
         speed:  new FormControl(null, {
-          // updateOn: 'change',
-          // validators: [Validators.required]
+          updateOn: 'change',
+          validators: null
         }),
         ukuran:  new FormControl(null, {
-          // updateOn: 'change',
-          // validators: [Validators.required]
+          updateOn: 'change',
+          validators: null
         }),
         chipset:  new FormControl(null, {
-          // updateOn: 'change',
-          // validators: [Validators.required]
+          updateOn: 'change',
+          validators: null
         }),
         toMerk:  new FormControl(null, {
-          // updateOn: 'change',
-          // validators: [Validators.required]
+          updateOn: 'change',
+          validators: null
         }),
       })
     })
+    this.addedForm.get('jenis').updateValueAndValidity();
   }
 
+  getJenis() {
+    if(this.addedForm.get('jenis').value == 'cpu'){
+      this.addedForm.get('detailProduk').get('baseClock').setValidators([Validators.required]);
+      this.addedForm.get('detailProduk').get('boostClock').setValidators([Validators.required]);
+      this.addedForm.get('detailProduk').get('core').setValidators([Validators.required]);
+      this.addedForm.get('detailProduk').get('thread').setValidators([Validators.required]);
+
+      this.addedForm.get('detailProduk').get('baseClock').updateValueAndValidity();
+      this.addedForm.get('detailProduk').get('boostClock').updateValueAndValidity();
+      this.addedForm.get('detailProduk').get('core').updateValueAndValidity();
+      this.addedForm.get('detailProduk').get('thread').updateValueAndValidity();
+    }
+    else if(this.addedForm.get('jenis').value == 'ram'){
+      this.addedForm.get('detailProduk').get('speed').setValidators([Validators.required]);
+      this.addedForm.get('detailProduk').get('ukuran').setValidators([Validators.required]);
+
+      this.addedForm.get('detailProduk').get('speed').updateValueAndValidity();
+      this.addedForm.get('detailProduk').get('ukuran').updateValueAndValidity();
+    }
+    else if(this.addedForm.get('jenis').value == 'mb'){
+      this.addedForm.get('detailProduk').get('chipset').setValidators([Validators.required]);
+      this.addedForm.get('detailProduk').get('toMerk').setValidators([Validators.required]);
+
+      this.addedForm.get('detailProduk').get('chipset').updateValueAndValidity();
+      this.addedForm.get('detailProduk').get('toMerk').updateValueAndValidity();
+    }
+  }
+  
   onSubmit(){
     this.presentLoading('Adding item...').then(()=>{
       this.barangService.addItem(this.addedForm.value);

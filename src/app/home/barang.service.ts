@@ -37,7 +37,7 @@ export class BarangService {
       model: 'Vostro',
       price: 700000,
       stock: 4,
-      desc: [{speed: '8400 Mbps', ukuran: '4 GB'}]
+      desc: [{speed: '8400', ukuran: '4'}]
     },
     {
       id: 'B04',
@@ -82,7 +82,8 @@ export class BarangService {
   }
 
   addItem(item){    
-    const ids = (this.items.length+1);
+    let ids = this.items[this.items.length-1].id.slice(2);
+    let idx = parseInt(ids) + 1;
     let objDesc = {};
 
     if(item.jenis == 'cpu')
@@ -107,11 +108,9 @@ export class BarangService {
     else{
       objDesc={}
     }
-
-    
-    this.items= this.items.concat({
-      id: "B0"+ids,
-      nama: item.merk + item.model,
+    this.items.push({
+      id: "B0"+idx,
+      nama: item.merk + ' ' + item.model,
       jenis: item.jenis,
       merk: item.merk,
       imageUrl: item.url.split(','),
@@ -120,7 +119,6 @@ export class BarangService {
       stock: item.stok,
       desc: [objDesc]
     })
-    return [...this.items];
   }
 
   editItem(id, item){

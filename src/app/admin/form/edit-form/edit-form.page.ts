@@ -23,7 +23,7 @@ export class EditFormPage implements OnInit {
     private alertCtrl: AlertController
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {  
     this.activatedRoute.paramMap.subscribe(paramMap => {
       if (!paramMap.has('itemId')){ return; }
       const itemId = paramMap.get('itemId');
@@ -88,11 +88,36 @@ export class EditFormPage implements OnInit {
     })
   }
 
-  editItem(){
-    console.log(this.editForm.value)
-    this.presentLoading('Editing item...').then(()=>{
-    console.log(this.editForm.value.desc);
+  getJenis() {
+    // console.log(this.editForm.get('jenis').value);
+    if(this.loadedItem.jenis == 'cpu'){
+      this.editForm.get('detailProduk').get('baseClock').setValidators([Validators.required]);
+      this.editForm.get('detailProduk').get('boostClock').setValidators([Validators.required]);
+      this.editForm.get('detailProduk').get('core').setValidators([Validators.required]);
+      this.editForm.get('detailProduk').get('thread').setValidators([Validators.required]);
 
+      this.editForm.get('detailProduk').get('baseClock').updateValueAndValidity();
+      this.editForm.get('detailProduk').get('boostClock').updateValueAndValidity();
+      this.editForm.get('detailProduk').get('core').updateValueAndValidity();
+      this.editForm.get('detailProduk').get('thread').updateValueAndValidity();
+    }
+    else if(this.loadedItem.jenis == 'ram'){
+      this.editForm.get('detailProduk').get('speed').setValidators([Validators.required]);
+      this.editForm.get('detailProduk').get('ukuran').setValidators([Validators.required]);
+
+      this.editForm.get('detailProduk').get('speed').updateValueAndValidity();
+      this.editForm.get('detailProduk').get('ukuran').updateValueAndValidity();
+    }
+    else if(this.loadedItem.jenis == 'mb'){
+      this.editForm.get('detailProduk').get('chipset').setValidators([Validators.required]);
+      this.editForm.get('detailProduk').get('toMerk').setValidators([Validators.required]);
+
+      this.editForm.get('detailProduk').get('chipset').updateValueAndValidity();
+      this.editForm.get('detailProduk').get('toMerk').updateValueAndValidity();
+    }
+  }
+  editItem(){
+    this.presentLoading('Editing item...').then(()=>{
       this.barangService.editItem(this.loadedItem.id, this.editForm.value);
       this.router.navigate(['/admin']);
       this.presentToast('Item Edited', 'success');

@@ -7,10 +7,10 @@
             <ion-menu-button (click)="menuBar()"></ion-menu-button>
         </ion-buttons>
         <ion-buttons slot="primary">
-            <ion-button href="/admin/added-form">
+            <ion-button [routerLink]="['/admin/added-form']">
                 <ion-icon name="add-outline" slot="icon-only"></ion-icon>
             </ion-button>
-            <ion-button href="/admin/multiple-delete">
+            <ion-button [routerLink]="['/admin/multiple-delete']">
                 <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
             </ion-button>
         </ion-buttons>

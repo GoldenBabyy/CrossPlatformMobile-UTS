@@ -25,7 +25,7 @@
 
                         <ion-item>
                             <ion-label position="floating">Jenis</ion-label>
-                            <ion-select formControlName="jenis" value="cpu">
+                            <ion-select formControlName="jenis" placeholder="Pilih Jenis" (ionChange)="getJenis()">
                                 <ion-select-option value="cpu">Processor</ion-select-option>
                                 <ion-select-option value="ram">RAM</ion-select-option>
                                 <ion-select-option value="mb">Motherboard</ion-select-option>
@@ -68,11 +68,9 @@
                             <ion-label class="error-msg">Stok tidak boleh kosong</ion-label>
                         </ion-item>
 
-                        <ion-item lines='none' *ngIf="addedForm.value.jenis != 'gpu'">
-                            <ion-label><br/>Deskripsi Produk</ion-label>
-                        </ion-item>
-                        <ion-item formGroupName="detailProduk" *ngIf="addedForm.value.jenis=='cpu'">
+                        <ion-item lines='none' formGroupName="detailProduk" *ngIf="addedForm.value.jenis=='cpu'">
                             <ion-grid>
+                                <strong><br/>Deskripsi Produk</strong>
                                 <ion-row>
                                     <ion-col>
                                         <ion-item lines='none'>
@@ -114,8 +112,9 @@
                             </ion-grid>
                         </ion-item>
 
-                        <ion-item formGroupName="detailProduk" *ngIf="addedForm.value.jenis=='ram'">
+                        <ion-item lines='none' formGroupName="detailProduk" *ngIf="addedForm.value.jenis=='ram'">
                             <ion-grid>
+                                <strong><br/>Deskripsi Produk</strong>
                                 <ion-row>
                                     <ion-col>
                                         <ion-item lines='none'>
@@ -123,12 +122,12 @@
                                         </ion-item>
                                         <ion-item>
                                             <ion-input type="number" formControlName="speed"></ion-input>
+                                            <ion-label>Mbps</ion-label>
                                         </ion-item>
                                     </ion-col>
                                     <ion-col>
                                         <ion-item lines='none'>
                                             <ion-label position="floating">Ukuran</ion-label>
-                                            <ion-label>Mbps</ion-label>
                                         </ion-item>
                                         <ion-item>
                                             <ion-input type="number" formControlName="ukuran"></ion-input>
@@ -139,8 +138,9 @@
                             </ion-grid>
                         </ion-item>
 
-                        <ion-item formGroupName="detailProduk" *ngIf="addedForm.value.jenis=='mb'">
+                        <ion-item lines='none' formGroupName="detailProduk" *ngIf="addedForm.value.jenis=='mb'">
                             <ion-grid>
+                                <strong><br/>Deskripsi Produk</strong>
                                 <ion-row>
                                     <ion-col>
                                         <ion-item lines='none'>
