@@ -53,43 +53,42 @@ export class EditFormPage implements OnInit {
       }),
       detailProduk: new FormGroup({
         baseClock: new FormControl(this.loadedItem.desc[0].base, {
-          // updateOn: 'change',
-          // validators: [Validators.required]
+          updateOn: 'change',
+          validators: null
         }),
         boostClock: new FormControl(this.loadedItem.desc[0].boost, {
-          // updateOn: 'change',
-          // validators: [Validators.required]
+          updateOn: 'change',
+          validators: null
         }),
         core: new FormControl(this.loadedItem.desc[0].core, {
-          // updateOn: 'change',
-          // validators: [Validators.required]
+          updateOn: 'change',
+          validators: null
         }),
         thread: new FormControl(this.loadedItem.desc[0].thread, {
-          // updateOn: 'change',
-          // validators: [Validators.required]
+          updateOn: 'change',
+          validators: null
         }),
         speed:  new FormControl(this.loadedItem.desc[0].speed, {
-          // updateOn: 'change',
-          // validators: [Validators.required]
+          updateOn: 'change',
+          validators: null
         }),
         ukuran:  new FormControl(this.loadedItem.desc[0].ukuran, {
-          // updateOn: 'change',
-          // validators: [Validators.required]
+          updateOn: 'change',
+          validators: null
         }),
         chipset:  new FormControl(this.loadedItem.desc[0].chipset, {
-          // updateOn: 'change',
-          // validators: [Validators.required]
+          updateOn: 'change',
+          validators: null
         }),
         toMerk:  new FormControl(this.loadedItem.desc[0].toMerk, {
-          // updateOn: 'change',
-          // validators: [Validators.required]
+          updateOn: 'change',
+          validators: null
         }),
       })
     })
   }
 
   getJenis() {
-    // console.log(this.editForm.get('jenis').value);
     if(this.loadedItem.jenis == 'cpu'){
       this.editForm.get('detailProduk').get('baseClock').setValidators([Validators.required]);
       this.editForm.get('detailProduk').get('boostClock').setValidators([Validators.required]);

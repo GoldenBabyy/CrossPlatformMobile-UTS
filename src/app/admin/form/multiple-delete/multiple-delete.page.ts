@@ -42,6 +42,7 @@ export class MultipleDeletePage implements OnInit{
       });
       this.deleteSelected = [];
       this.router.navigate(['/admin']);
+      this.presentToast();
     });
   }
 
